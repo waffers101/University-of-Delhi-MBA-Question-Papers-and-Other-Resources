@@ -1,0 +1,56 @@
+(function ($) {
+  'use strict';
+
+  $(document).ready(function () {
+    $('html').removeClass('no-js');
+/* Begin: design/js/modules/primary-nav.js */
+    $('.primary-nav li.active').prev('li').children('a').addClass('ninja').css('border-right','none');/* End: design/js/modules/primary-nav.js */
+/* Begin: design/js/modules/secondary-nav.js */
+
+
+
+    $('a.mobile-toggle').click(function(e){
+    	e.preventDefault();
+    	$('body').toggleClass('mobile-menu-revealed');
+    });/* End: design/js/modules/secondary-nav.js */
+/* Begin: design/js/modules/equal-height.js */
+    var footer_blocks = $('.expanded-footer-nodesinblock .nodesinblock'),
+      w = '';
+
+    function equal_height(t) {
+      $(t).removeAttr('style');
+
+      var tallest = 0;
+
+      $(t).each(function(){
+        if($(this).height() > tallest) {
+          tallest = $(this).height();
+        }
+      });
+      $(t).height(tallest);
+    }
+
+    $(window).on("load resize",function(){
+      w = $( window ).width();
+      if (w > 767) {
+        equal_height(footer_blocks);
+      } else {
+        $(footer_blocks).each(function(){
+          $(this).css('height','');
+        });
+      }
+    });
+/* End: design/js/modules/equal-height.js */
+/* Begin: design/js/modules/search.js */
+    var search = '';
+    $('#edit-search-block-form--2').on('change focus',function(){
+      search = $(this).val();
+      if(search == 'Search...') {
+        $(this).val('');
+      }
+    });/* End: design/js/modules/search.js */
+/* Begin: design/js/modules/person-tabs.js */
+    $('.tabs--wrapper .nav-tabs li:first-child a').tab('show');/* End: design/js/modules/person-tabs.js */
+  });
+
+})(jQuery);
